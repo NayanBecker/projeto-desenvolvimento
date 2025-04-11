@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const model = require('../../../models');
+const model = require('../../../model');
 
 router.get(process.env.BASE_URL + '/api/v1/rest/reply',
     async function (req, resp) {

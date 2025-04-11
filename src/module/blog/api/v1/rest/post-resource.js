@@ -2,23 +2,24 @@ const express = require('express');
 const router = express.Router();
 const model = require('../../../models');
 
-router.get(process.env.BASE_URL + '/api/v1/rest/post', async (req, res) => {
-  try {
-    const posts = await model.post.findAll({
-      include: [
-        {
-          model: model.reply,
-          as: 'replies',
-          required: false,
-        },
-      ],
-    });
-    res.json(posts);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+router.get(process.env.BASE_URL + '/api/v1/rest/post',
+  async function (req, resp) {
+    try {
+      const posts = await model.post.findAll({
+        include: [
+          {
+            model: model.reply,
+            as: 'replies',
+            required: false,
+          },
+        ],
+      });
+      resp.json(posts);
+    } catch (error) {
+      console.error(error);
+      resp.status(500).json({ error: 'Internal server error' });
+    }
+  });
 router.post(process.env.BASE_URL + '/api/v1/rest/post',
   async function (req, resp) {
     const Post = await model.Post.schema('public');

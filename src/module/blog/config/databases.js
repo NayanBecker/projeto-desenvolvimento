@@ -1,13 +1,13 @@
-const db = require('../config/databases')
+const db = require('../../../../config/database')
 
 module.exports = {
   development: {
-    ...db.blog,
+    ...db.blog
   },
   homolog: {
-    ...db.blog,
+    ...db.blog
   },
   production: {
-    ...db.blog,
-  },
+    ...db.blog
+  }
 }
